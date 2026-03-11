@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شبكات الحاسوب | Réseaux Informatiques | Computer Networks</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #1a1a26;
+  --border: #2a2a3d;
+  --accent: #00d4ff;
+  --accent2: #7c3aed;
+  --accent3: #f59e0b;
+  --accent4: #10b981;
+  --text: #e2e8f0;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --danger: #ef4444;
+  --formula-bg: #0d1117;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container { position: relative; z-index: 1; }
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(135deg, #0a0a1a 0%, #0d0d2b 50%, #0a0a1a 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 0 20px rgba(0,212,255,0.3);
+}
+
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.lang-badges {
+  display: flex;
+  gap: 6px;
+}
+
+.lang-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid;
+  cursor: default;
+  letter-spacing: 0.5px;
+}
+.lang-badge.ar { border-color: var(--accent); color: var(--accent); }
+.lang-badge.fr { border-color: var(--accent2); color: var(--accent2); }
+.lang-badge.en { border-color: var(--accent4); color: var(--accent4); }
+
+nav {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background: rgba(0,212,255,0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ===== HERO ===== */
+.hero {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.hero h1 .line1 { color: var(--accent); }
+.hero h1 .line2 { color: var(--text); }
+.hero h1 .line3 { 
+  font-size: 0.6em; 
+  color: var(--text-muted);
+  font-weight: 400;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  direction: rtl;
+}
+
+.hero-sub {
+  color: var(--text-dim);
+  font-size: 15px;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* ===== SECTION TABS ===== */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.section-icon.blue { background: rgba(0,212,255,0.15); }
+.section-icon.purple { background: rgba(124,58,237,0.15); }
+.section-icon.amber { background: rgba(245,158,11,0.15); }
+.section-icon.green { background: rgba(16,185,129,0.15); }
+.section-icon.red { background: rgba(239,68,68,0.15); }
+
+.section-title h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.section-title p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ===== CARDS GRID ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover {
+  border-color: rgba(0,212,255,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,212,255,0.08);
+}
+
+.card:hover::before { opacity: 1; }
+
+.card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.card h3 .fr { 
+  font-size: 12px; 
+  color: var(--accent2); 
+  font-weight: 400;
+  display: block;
+}
+
+.card h3 .en { 
+  font-size: 11px; 
+  color: var(--accent4); 
+  font-weight: 400;
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.card p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.card p.fr-text {
+  font-size: 12px;
+  color: #64748b;
+  border-right: 2px solid var(--accent2);
+  padding-right: 12px;
+  margin-top: 8px;
+}
+
+/* ===== FORMULA BOXES ===== */
+.formulas {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 12px;
+}
+
+.formula-title {
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--accent3);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formula:last-child { border-bottom: none; }
+
+.formula .label {
+  color: var(--text-muted);
+  font-size: 11px;
+  min-width: 100px;
+  text-align: left;
+}
+
+.formula .eq {
+  color: var(--accent);
+}
+
+/* ===== CALCULATOR ===== */
+.calculator-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+
+.calc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.calc-badge {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: var(--bg);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.calc-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.formula-guide {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.guide-title {
+  font-size: 11px;
+  color: var(--accent3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 12px;
+}
+
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.guide-table th {
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 6px 12px;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.guide-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  color: var(--text-dim);
+  vertical-align: top;
+}
+
+.guide-table td:first-child {
+  color: var(--accent3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.guide-table td:nth-child(3) {
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.guide-table tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.input-group input, .input-group select {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  outline: none;
+  transition: border-color 0.2s;
+  direction: ltr;
+}
+
+.input-group input:focus, .input-group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(0,212,255,0.1);
+}
+
+.calc-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: var(--bg);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.calc-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0,212,255,0.3);
+}
+
+.calc-result {
+  margin-top: 20px;
+  background: var(--formula-bg);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 20px;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.calc-result.visible { display: block; }
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 13px;
+}
+
+.result-row:last-child { border-bottom: none; }
+
+.result-label { color: var(--text-muted); }
+.result-value { 
+  color: var(--accent4); 
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.result-formula {
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* ===== EXERCISES ===== */
+.exercise-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.exercise-card:hover {
+  border-color: rgba(245,158,11,0.3);
+}
+
+.ex-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.ex-num {
+  width: 40px; height: 40px;
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.3);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--accent3);
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.ex-question { font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.ex-question strong { color: var(--text); }
+
+.solution-toggle {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.3);
+  color: var(--accent4);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.2s;
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.solution-toggle:hover {
+  background: rgba(16,185,129,0.2);
+}
+
+.solution {
+  display: none;
+  margin-top: 16px;
+  background: var(--formula-bg);
+  border-radius: 10px;
+  padding: 16px;
+  border-right: 3px solid var(--accent4);
+}
+
+.solution.open { display: block; animation: fadeIn 0.3s; }
+
+.solution-step {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 4px 0;
+  line-height: 1.8;
+}
+
+.solution-step .highlight { color: var(--accent3); font-weight: 700; }
+.solution-step .formula { color: var(--accent); }
+.solution-step .result { color: var(--accent4); font-weight: 700; font-size: 15px; }
+.solution-step .comment { color: var(--text-muted); font-size: 11px; }
+
+/* ===== CODING SECTION ===== */
+.coding-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.coding-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.coding-card:hover {
+  border-color: rgba(124,58,237,0.4);
+  transform: translateY(-2px);
+}
+
+.coding-card-header {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.coding-type {
+  font-size: 10px;
+  color: var(--accent2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 8px;
+}
+
+.coding-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.coding-card h3 .sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+  display: block;
+  margin-top: 4px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+
+.coding-body {
+  padding: 16px 20px;
+}
+
+.coding-rule {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 12px;
+  align-items: flex-start;
+}
+
+.coding-rule:last-child { border-bottom: none; }
+
+.rule-bit {
+  background: rgba(0,212,255,0.1);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.rule-bit.one { background: rgba(16,185,129,0.1); color: var(--accent4); }
+.rule-bit.zero { background: rgba(239,68,68,0.1); color: var(--danger); }
+
+.rule-desc { color: var(--text-dim); line-height: 1.5; }
+
+/* ===== IP SECTION ===== */
+.ip-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+.ip-table th {
+  background: var(--surface2);
+  padding: 14px 16px;
+  text-align: right;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+.ip-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.ip-table tr:last-child td { border-bottom: none; }
+.ip-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.class-badge {
+  display: inline-block;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.class-a { background: rgba(0,212,255,0.2); color: var(--accent); }
+.class-b { background: rgba(124,58,237,0.2); color: var(--accent2); }
+.class-c { background: rgba(16,185,129,0.2); color: var(--accent4); }
+.class-d { background: rgba(245,158,11,0.2); color: var(--accent3); }
+.class-e { background: rgba(239,68,68,0.2); color: var(--danger); }
+
+/* ===== SUBNET CALC ===== */
+.subnet-calc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  nav { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; width: 100%; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .input-grid { grid-template-columns: 1fr 1fr; }
+  .hero { padding: 40px 16px 24px; }
+  .stats-row { gap: 24px; }
+}
+
+@media (max-width: 480px) {
+  .input-grid { grid-template-columns: 1fr; }
+}
+
+/* highlight */
+.highlight-box {
+  background: rgba(0,212,255,0.05);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  margin-left: 4px;
+}
+.tag-ar { background: rgba(0,212,255,0.1); color: var(--accent); }
+.tag-fr { background: rgba(124,58,237,0.1); color: var(--accent2); }
+.tag-en { background: rgba(16,185,129,0.1); color: var(--accent4); }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 32px 0;
+}
+
+.note {
+  background: rgba(245,158,11,0.08);
+  border-right: 3px solid var(--accent3);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 12px 0;
+}
+
+.full-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.full-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bit-vis {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+  direction: ltr;
+}
+
+.bit {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid;
+}
+
+.bit.b1 { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); color: var(--accent4); }
+.bit.b0 { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); color: var(--danger); }
+.bit.bp { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.4); color: var(--accent3); }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">🌐</div>
+      <div class="logo-text">NET<span style="opacity:0.5">WIKI</span></div>
+    </div>
+    <div class="lang-badges">
+      <span class="lang-badge ar">العربية</span>
+      <span class="lang-badge fr">Français</span>
+      <span class="lang-badge en">English</span>
+    </div>
+    <nav>
+      <button class="nav-btn active" onclick="showTab('theory')">📡 المفاهيم الأساسية</button>
+      <button class="nav-btn" onclick="showTab('formulas')">📐 القوانين</button>
+      <button class="nav-btn" onclick="showTab('calculator')">🧮 الآلة الحاسبة</button>
+      <button class="nav-btn" onclick="showTab('exercises')">📝 التمارين</button>
+      <button class="nav-btn" onclick="showTab('coding')">⚡ الترميز</button>
+      <button class="nav-btn" onclick="showTab('ip')">🔌 IP & Sous-réseaux</button>
+      <button class="nav-btn" onclick="showTab('errors')">🛡️ كشف الأخطاء</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>
+    <span class="line1">شبكات الحاسوب</span><br>
+    <span class="line2">Réseaux Informatiques</span><br>
+    <span class="line3">Computer Networks — ملخص شامل</span>
+  </h1>
+  <p class="hero-sub">كل ما تحتاجه من مفاهيم، قوانين، تمارين محلولة — بثلاث لغات</p>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">أقسام</div></div>
+    <div class="stat"><div class="stat-num">15+</div><div class="stat-label">قانون</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">تمارين محلولة</div></div>
+    <div class="stat"><div class="stat-num">3×</div><div class="stat-label">لغات</div></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ===== TAB: THEORY ===== -->
+<div id="theory" class="tab-content active">
+  <div class="section-header">
+    <div class="section-icon blue">📡</div>
+    <div class="section-title">
+      <h2>خصائص الإرسال الفيزيائي</h2>
+      <p>Caractéristiques d'une transmission physique · Physical Transmission Characteristics</p>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- Bande passante -->
+    <div class="card">
+      <div class="card-num">01 · BANDWIDTH</div>
+      <h3>
+        عرض النطاق الترددي
+        <span class="fr">Bande Passante</span>
+        <span class="en">Bandwidth</span>
+      </h3>
+      <p>الخاصية الأساسية لوسيط الإرسال. يتصرف الوسيط كمرشح يسمح فقط لنطاق محدود من الترددات بالمرور. كل تردد خارج هذا النطاق يُضعَّف بشدة.</p>
+      <p class="fr-text">La largeur de la bande passante est la caractéristique essentielle d'un support de transmission, qui se comporte comme un filtre.</p>
+      <div class="highlight-box">
+        <strong>أمثلة / Exemples:</strong><br>
+        🎙️ خط هاتفي: 300 Hz → 3400 Hz <strong>(3100 Hz)</strong><br>
+        📡 كابل محوري: 300 → 400 MHz<br>
+        👂 الأذن البشرية: 20 Hz → 20 kHz
+      </div>
+      <div class="formulas">
+        <div class="formula-title">FORMULA</div>
+        <div class="formula">
+          <span class="label">Bandwidth =</span>
+          <span class="eq">F_max - F_min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rapidité de modulation -->
+    <div class="card">
+      <div class="card-num">02 · MODULATION RATE</div>
+      <h3>
+        سرعة التعديل
+        <span class="fr">Rapidité de Modulation</span>
+        <span class="en">Modulation Rate / Baud Rate</span>
+      </h3>
+      <p>تُعبِّر عن عدد الرموز (symboles) المُرسَلة في وحدة الزمن. وحدتها: <strong>الباود (Baud)</strong>. إذا كان T هو مدة الفترة بين قيمتين متتاليتين:</p>
+      <div class="formulas">
+        <div class="formula-title">FORMULAS</div>
+        <div class="formula">
+          <span class="label">R =</span>
+          <span class="eq">1 / T &nbsp;&nbsp; (bauds)</span>
+        </div>
+        <div class="formula">
+          <span class="label">R_max =</span>
+          <span class="eq">2 × F_max &nbsp;&nbsp; (Nyquist)</span>
+        </div>
+      </div>
+      <div class="note">⚠️ الباود ≠ bit/s — الباود هو عدد الرموز، وليس البتات بالضرورة</div>
+    </div>
+
+    <!-- Débit -->
+    <div class="card">
+      <div class="card-num">03 · BIT RATE</div>
+      <h3>
+        الدبيت / تدفق البيانات
+        <span class="fr">Débit Binaire</span>
+        <span class="en">Bit Rate</span>
+      </h3>
+      <p>عدد البتات المُرسَلة في وحدة الزمن. وحدته: <strong>bit/s</strong>. يرتبط بسرعة التعديل وعدد حالات الإشارة (valence V).</p>
+      <div class="formulas">
+        <div class="formula-title">FORMULAS</div>
+        <div class="formula">
+          <span class="label">D =</span>
+          <span class="eq">R × log₂(V)</span>
+        </div>
+        <div class="formula">
+          <span class="label">D_max =</span>
+          <span class="eq">2F × log₂(V) &nbsp;&nbsp; (Nyquist)</span>
+        </div>
+        <div class="formula">
+          <span class="label">C =</span>
+          <span class="eq">F × log₂(1 + S/N) &nbsp;&nbsp; (Shannon)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atténuation -->
+    <div class="card">
+      <div class="card-num">04 · ATTENUATION</div>
+      <h3>
+        التوهين / الضعف
+        <span class="fr">Affaiblissement / Atténuation</span>
+        <span class="en">Attenuation</span>
+      </h3>
+      <p>قناة الإرسال تُضعِّف الإشارة أثناء انتشارها. يزداد التضعيف مع المسافة. يُقاس بنسبة القدرة عند الخروج إلى القدرة عند الدخول.</p>
+      <div class="formulas">
+        <div class="formula-title">FORMULAS</div>
+        <div class="formula">
+          <span class="label">A =</span>
+          <span class="eq">S_out / S_in</span>
+        </div>
+        <div class="formula">
+          <span class="label">A (dB) =</span>
+          <span class="eq">10 × log₁₀(S/N) &nbsp;&nbsp; décibels</span>
+        </div>
+      </div>
+      <div class="note">💡 S = القدرة عند الخروج، N = القدرة عند الدخول</div>
+    </div>
+
+    <!-- Taux d'erreur -->
+    <div class="card">
+      <div class="card-num">05 · ERROR RATE</div>
+      <h3>
+        معدل الأخطاء
+        <span class="fr">Taux d'Erreur</span>
+        <span class="en">Bit Error Rate (BER)</span>
+      </h3>
+      <p>احتمال فقدان أو تشويه معلومة (bit واحد). يُحسب بقسمة عدد البتات الخاطئة على إجمالي البتات المُرسَلة خلال مدة كافية.</p>
+      <div class="formulas">
+        <div class="formula-title">FORMULA</div>
+        <div class="formula">
+          <span class="label">TEB =</span>
+          <span class="eq">Bits_erronés / Bits_émis</span>
+        </div>
+      </div>
+      <div class="highlight-box">
+        مثال: 1 خطأ من أصل مليون bit → TEB = 10⁻⁶
+      </div>
+    </div>
+
+    <!-- Théorèmes -->
+    <div class="card">
+      <div class="card-num">06 · THEOREMS</div>
+      <h3>
+        نظريتا نيكويست وشانون
+        <span class="fr">Théorèmes de Nyquist & Shannon</span>
+        <span class="en">Nyquist & Shannon Theorems</span>
+      </h3>
+      <p><strong>نيكويست</strong> (خط بدون ضوضاء): الدبيت الأقصى على خط بلا ضوضاء يساوي ضعف عرض النطاق مضروباً في logarithme ثنائي للـ valence.</p>
+      <p><strong>شانون</strong> (خط مع ضوضاء): السعة القصوى تعتمد على نسبة الإشارة للضوضاء S/N.</p>
+      <div class="formulas">
+        <div class="formula-title">KEY FORMULAS</div>
+        <div class="formula"><span class="label">Nyquist:</span><span class="eq">D_max = 2F × log₂(V)</span></div>
+        <div class="formula"><span class="label">Shannon:</span><span class="eq">C = F × log₂(1 + S/N)</span></div>
+        <div class="formula"><span class="label">V = valence:</span><span class="eq">2 (bivalent), 4 (quadrivalent), 16...</span></div>
+      </div>
+    </div>
+
+    <!-- Propagation -->
+    <div class="card">
+      <div class="card-num">07 · PROPAGATION</div>
+      <h3>
+        زمن الانتشار
+        <span class="fr">Temps de Propagation & Transmission</span>
+        <span class="en">Propagation & Transmission Time</span>
+      </h3>
+      <p>وقت إرسال الإطار يتكون من وقتين: زمن الإرسال (وقت وضع البتات على الوسيط) + زمن الانتشار (وقت وصول الإشارة).</p>
+      <div class="formulas">
+        <div class="formula-title">FORMULAS</div>
+        <div class="formula"><span class="label">T_trans =</span><span class="eq">Taille_trame / Débit</span></div>
+        <div class="formula"><span class="label">T_prop =</span><span class="eq">Distance / Vitesse_prop</span></div>
+        <div class="formula"><span class="label">T_total =</span><span class="eq">T_trans + T_prop</span></div>
+      </div>
+    </div>
+
+    <!-- Anneau -->
+    <div class="card">
+      <div class="card-num">08 · RING NETWORK</div>
+      <h3>
+        الشبكة الحلقية
+        <span class="fr">Réseau en Anneau (Token Ring)</span>
+        <span class="en">Ring Network</span>
+      </h3>
+      <p>شبكة حلقية تتضمن محطات موزعة على الحلقة. تُحسب: عدد البتات في الحلقة، عدد الإطارات في العبور، والمردود.</p>
+      <div class="formulas">
+        <div class="formula-title">FORMULAS</div>
+        <div class="formula"><span class="label">T_bit =</span><span class="eq">1 / Débit</span></div>
+        <div class="formula"><span class="label">Bits_prop =</span><span class="eq">T_prop_anneau × Débit</span></div>
+        <div class="formula"><span class="label">Rendement =</span><span class="eq">T_trame / (T_trame + T_prop)</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== TAB: FORMULAS ===== -->
+<div id="formulas" class="tab-content">
+  <div class="section-header">
+    <div class="section-icon amber">📐</div>
+    <div class="section-title">
+      <h2>جميع القوانين منظمة</h2>
+      <p>حسب المعطيات المتوفرة — كيفاش تعرف أي قانون تستعمل</p>
+    </div>
+  </div>
+
+  <!-- GUIDE TABLE -->
+  <div class="full-card">
+    <h3>🎯 دليل اختيار القانون — حسب المعطيات</h3>
+    <div class="formula-guide">
+      <div class="guide-title">⚡ اقرأ المعطيات → اختار القانون المناسب</div>
+      <table class="guide-table">
+        <tr>
+          <th>القانون / Formule</th>
+          <th>المعطيات المطلوبة</th>
+          <th>النتيجة</th>
+          <th>متى تستعمله</th>
+        </tr>
+        <tr>
+          <td>R = 1/T</td>
+          <td>T (مدة الرمز بالثانية)</td>
+          <td>R (bauds)</td>
+          <td>عندك مدة interval بين رمزين</td>
+        </tr>
+        <tr>
+          <td>R_max = 2 × F_max</td>
+          <td>F_max (أعلى تردد)</td>
+          <td>R_max (bauds)</td>
+          <td>تحسب السرعة القصوى للتعديل</td>
+        </tr>
+        <tr>
+          <td>D = R × log₂(V)</td>
+          <td>R (bauds), V (valence)</td>
+          <td>D (bit/s)</td>
+          <td>عندك السرعة والـ valence</td>
+        </tr>
+        <tr>
+          <td>R = D / log₂(V)</td>
+          <td>D (bit/s), V (valence)</td>
+          <td>R (bauds)</td>
+          <td>عندك الدبيت والـ valence، تبي R</td>
+        </tr>
+        <tr>
+          <td>D_max = 2F × log₂(V)</td>
+          <td>F (bande passante), V</td>
+          <td>D_max (bit/s)</td>
+          <td>خط بدون ضوضاء — نظرية Nyquist</td>
+        </tr>
+        <tr>
+          <td>C = F × log₂(1 + S/N)</td>
+          <td>F, S/N (نسبة إشارة/ضوضاء)</td>
+          <td>C (bit/s)</td>
+          <td>خط مع ضوضاء — نظرية Shannon</td>
+        </tr>
+        <tr>
+          <td>A(dB) = 10×log₁₀(S/N)</td>
+          <td>S/N (نسبة القدرات)</td>
+          <td>A en dB</td>
+          <td>تحويل نسبة القدرة إلى ديسيبل</td>
+        </tr>
+        <tr>
+          <td>S/N = 10^(dB/10)</td>
+          <td>A en dB</td>
+          <td>S/N (نسبة)</td>
+          <td>تحويل ديسيبل إلى نسبة قدرة</td>
+        </tr>
+        <tr>
+          <td>T_trans = Taille/Débit</td>
+          <td>حجم الإطار (bits), D</td>
+          <td>T_trans (s)</td>
+          <td>وقت إرسال الإطار</td>
+        </tr>
+        <tr>
+          <td>T_prop = L / V_prop</td>
+          <td>L (مسافة), V_prop</td>
+          <td>T_prop (s)</td>
+          <td>وقت انتشار الإشارة</td>
+        </tr>
+        <tr>
+          <td>Rendement = T_trame / (T_trame + T_prop)</td>
+          <td>T_trame, T_prop</td>
+          <td>η (rendement)</td>
+          <td>مردود الشبكة الحلقية</td>
+        </tr>
+      </table>
+    </div>
+    <div class="note">⚠️ <strong>مهم جداً:</strong> عندما تكون الضوضاء بالـ dB، يجب تحويلها أولاً: S/N = 10^(dB/10) — ثم تستعمل Shannon</div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-num">GROUP A · MODULATION</div>
+      <h3>مجموعة التعديل</h3>
+      <div class="formulas">
+        <div class="formula-title">MODULATION RATE FORMULAS</div>
+        <div class="formula"><span class="label">R =</span><span class="eq">1 / T</span></div>
+        <div class="formula"><span class="label">R_max =</span><span class="eq">2 × F_max</span></div>
+        <div class="formula"><span class="label">R =</span><span class="eq">D / log₂(V)</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-num">GROUP B · BIT RATE</div>
+      <h3>مجموعة الدبيت</h3>
+      <div class="formulas">
+        <div class="formula-title">BIT RATE FORMULAS</div>
+        <div class="formula"><span class="label">D =</span><span class="eq">R × log₂(V)</span></div>
+        <div class="formula"><span class="label">D_max =</span><span class="eq">2F × log₂(V) — Nyquist</span></div>
+        <div class="formula"><span class="label">C =</span><span class="eq">F × log₂(1 + S/N) — Shannon</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-num">GROUP C · PROPAGATION</div>
+      <h3>مجموعة الانتشار</h3>
+      <div class="formulas">
+        <div class="formula-title">TIME & DELAY FORMULAS</div>
+        <div class="formula"><span class="label">T_emission =</span><span class="eq">Taille / Débit</span></div>
+        <div class="formula"><span class="label">T_propagation =</span><span class="eq">Distance / V_prop</span></div>
+        <div class="formula"><span class="label">T_total =</span><span class="eq">T_em + T_prop</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-num">GROUP D · RING</div>
+      <h3>مجموعة الشبكة الحلقية</h3>
+      <div class="formulas">
+        <div class="formula-title">RING NETWORK FORMULAS</div>
+        <div class="formula"><span class="label">T_bit =</span><span class="eq">1 / D</span></div>
+        <div class="formula"><span class="label">Bits_anneau =</span><span class="eq">T_prop_anneau × D</span></div>
+        <div class="formula"><span class="label">η =</span><span class="eq">T_trame / (T_trame + T_prop)</span></div>
+        <div class="formula"><span class="label">Trames_transit =</span><span class="eq">T_aller_retour / T_trame</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-num">GROUP E · DECIBEL</div>
+      <h3>الديسيبل والتحويلات</h3>
+      <div class="formulas">
+        <div class="formula-title">DECIBEL CONVERSIONS</div>
+        <div class="formula"><span class="label">A(dB) =</span><span class="eq">10 × log₁₀(S/N)</span></div>
+        <div class="formula"><span class="label">S/N =</span><span class="eq">10^(A_dB / 10)</span></div>
+        <div class="formula"><span class="label">20 dB →</span><span class="eq">S/N = 10^(20/10) = 100</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-num">GROUP F · SIZES</div>
+      <h3>تحويل الأحجام</h3>
+      <div class="formulas">
+        <div class="formula-title">SIZE CONVERSIONS</div>
+        <div class="formula"><span class="label">1 octet =</span><span class="eq">8 bits</span></div>
+        <div class="formula"><span class="label">1 KB =</span><span class="eq">1024 octets = 8192 bits</span></div>
+        <div class="formula"><span class="label">1 MB =</span><span class="eq">1024 KB = 8 388 608 bits</span></div>
+        <div class="formula"><span class="label">1 Mb/s =</span><span class="eq">10⁶ bit/s</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB: CALCULATOR ===== -->
+<div id="calculator" class="tab-content">
+  <div class="section-header">
+    <div class="section-icon green">🧮</div>
+    <div class="section-title">
+      <h2>آلة حاسبة ذكية</h2>
+      <p>أدخل المعطيات — الآلة تختار القانون المناسب وتحسب</p>
+    </div>
+  </div>
+
+  <!-- Calc 1: R & D -->
+  <div class="calculator-section">
+    <div class="calc-header">
+      <span class="calc-badge">CALC 1</span>
+      <h3>حساب الدبيت وسرعة التعديل</h3>
+    </div>
+    <div class="input-grid">
+      <div class="input-group">
+        <label>R — Rapidité de modulation (bauds)</label>
+        <input type="number" id="c1_R" placeholder="ex: 1200" step="any">
+      </div>
+      <div class="input-group">
+        <label>D — Débit binaire (bit/s)</label>
+        <input type="number" id="c1_D" placeholder="ex: 2400" step="any">
+      </div>
+      <div class="input-group">
+        <label>V — Valence (nombre d'états)</label>
+        <select id="c1_V">
+          <option value="">اختر الـ valence</option>
+          <option value="2">2 — Bivalent (1 bit/symbole)</option>
+          <option value="4">4 — Quadrivalent (2 bits/symbole)</option>
+          <option value="8">8 — (3 bits/symbole)</option>
+          <option value="16">16 — (4 bits/symbole)</option>
+          <option value="32">32 — (5 bits/symbole)</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>F — Bande passante (Hz)</label>
+        <input type="number" id="c1_F" placeholder="ex: 3100" step="any">
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calc1()">احسب ⚡</button>
+    <div class="calc-result" id="c1_result"></div>
+  </div>
+
+  <!-- Calc 2: Shannon/Nyquist -->
+  <div class="calculator-section">
+    <div class="calc-header">
+      <span class="calc-badge">CALC 2</span>
+      <h3>نيكويست وشانون — الدبيت الأقصى</h3>
+    </div>
+    <div class="input-grid">
+      <div class="input-group">
+        <label>F — Bande passante (Hz)</label>
+        <input type="number" id="c2_F" placeholder="ex: 100000000" step="any">
+      </div>
+      <div class="input-group">
+        <label>V — Valence (Nyquist)</label>
+        <select id="c2_V">
+          <option value="">اختر</option>
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="16">16</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>S/N — Signal/Bruit (ratio, pas dB)</label>
+        <input type="number" id="c2_SN" placeholder="ex: 100" step="any">
+      </div>
+      <div class="input-group">
+        <label>OR: S/N en dB → convertir</label>
+        <input type="number" id="c2_SNdB" placeholder="ex: 20 dB" step="any" oninput="convertdB()">
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calc2()">احسب ⚡</button>
+    <div class="calc-result" id="c2_result"></div>
+  </div>
+
+  <!-- Calc 3: Propagation -->
+  <div class="calculator-section">
+    <div class="calc-header">
+      <span class="calc-badge">CALC 3</span>
+      <h3>زمن الإرسال والانتشار</h3>
+    </div>
+    <div class="input-grid">
+      <div class="input-group">
+        <label>Taille du paquet (octets)</label>
+        <input type="number" id="c3_size" placeholder="ex: 512" step="any">
+      </div>
+      <div class="input-group">
+        <label>Débit D (bit/s)</label>
+        <input type="number" id="c3_D" placeholder="ex: 155000000" step="any">
+      </div>
+      <div class="input-group">
+        <label>Distance L (mètres)</label>
+        <input type="number" id="c3_L" placeholder="ex: 3000000" step="any">
+      </div>
+      <div class="input-group">
+        <label>Vitesse propagation (m/s)</label>
+        <input type="number" id="c3_V" placeholder="ex: 200000000" value="200000000" step="any">
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calc3()">احسب ⚡</button>
+    <div class="calc-result" id="c3_result"></div>
+  </div>
+
+  <!-- Calc 4: Subnet -->
+  <div class="calculator-section">
+    <div class="calc-header">
+      <span class="calc-badge">CALC 4</span>
+      <h3>حساب Sous-réseau و Masque</h3>
+    </div>
+    <div class="input-grid">
+      <div class="input-group">
+        <label>Adresse IP</label>
+        <input type="text" id="c4_ip" placeholder="ex: 192.168.69.0" style="direction:ltr">
+      </div>
+      <div class="input-group">
+        <label>Nombre de sous-réseaux</label>
+        <input type="number" id="c4_subnets" placeholder="ex: 5" min="2">
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calc4()">احسب ⚡</button>
+    <div class="calc-result" id="c4_result"></div>
+  </div>
+</div>
+
+<!-- ===== TAB: EXERCISES ===== -->
+<div id="exercises" class="tab-content">
+  <div class="section-header">
+    <div class="section-icon amber">📝</div>
+    <div class="section-title">
+      <h2>التمارين المحلولة</h2>
+      <p>TD 1 — Exercices avec solutions complètes</p>
+    </div>
+  </div>
+
+  <!-- Ex1 -->
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">01</div>
+      <div>
+        <div class="ex-question">
+          <strong>السؤال:</strong> ما هي سرعة التعديل R اللازمة لتحقيق دبيت D = 2400 bit/s،
+          إذا كانت الإشارات <strong>ثنائية القيمة (bivalent, V=2)</strong>؟ وما هو الحال إذا كانت <strong>رباعية (V=4)</strong>؟
+        </div>
+      </div>
+    </div>
+    <button class="solution-toggle" onclick="toggleSolution('s1')">▶ عرض الحل</button>
+    <div id="s1" class="solution">
+      <div class="solution-step">📐 <strong>القانون المستعمل:</strong> <span class="formula">R = D / log₂(V)</span></div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">🔹 <strong>الحالة 1 — V = 2 (bivalent)</strong></div>
+      <div class="solution-step">R = 2400 / log₂(2) = 2400 / <span class="highlight">1</span></div>
+      <div class="solution-step result">→ R = 2400 bauds</div>
+      <div class="solution-step comment">// الإشارة بحالتين فقط (0 و 1): كل رمز = 1 bit</div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">🔹 <strong>الحالة 2 — V = 4 (quadrivalent)</strong></div>
+      <div class="solution-step">R = 2400 / log₂(4) = 2400 / <span class="highlight">2</span></div>
+      <div class="solution-step result">→ R = 1200 bauds</div>
+      <div class="solution-step comment">// الإشارة بـ 4 حالات: كل رمز = 2 bits — نصف السرعة كافية!</div>
+    </div>
+  </div>
+
+  <!-- Ex2 -->
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">02</div>
+      <div>
+        <div class="ex-question">
+          <strong>السؤال:</strong> خط هاتفي بترددات 300-3400 Hz. سرعة التعديل R = 1200 bauds، والـ valence V = 16. ما هو الدبيت D؟
+        </div>
+      </div>
+    </div>
+    <button class="solution-toggle" onclick="toggleSolution('s2')">▶ عرض الحل</button>
+    <div id="s2" class="solution">
+      <div class="solution-step">📐 <strong>القانون المستعمل:</strong> <span class="formula">D = R × log₂(V)</span></div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">D = 1200 × log₂(16)</div>
+      <div class="solution-step">D = 1200 × <span class="highlight">4</span> &nbsp;&nbsp; <span class="comment">// log₂(16) = log₂(2⁴) = 4</span></div>
+      <div class="solution-step result">→ D = 4800 bit/s</div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step comment">// V=16 تعني 4 bits per symbol → الدبيت أعلى من سرعة التعديل</div>
+    </div>
+  </div>
+
+  <!-- Ex3 -->
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">03</div>
+      <div>
+        <div class="ex-question">
+          <strong>السؤال:</strong> نظام إرسال رقمي بدبيت 9600 bit/s. إذا كان كل رمز يُشفر كلمة من 4 bits، ما هي أدنى بنده passante لازمة؟
+        </div>
+      </div>
+    </div>
+    <button class="solution-toggle" onclick="toggleSolution('s3')">▶ عرض الحل</button>
+    <div id="s3" class="solution">
+      <div class="solution-step">📐 <strong>تحديد المعطيات:</strong></div>
+      <div class="solution-step">D = 9600 bit/s، كل رمز = 4 bits → V = 2⁴ = <span class="highlight">16</span></div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">🔹 <strong>الخطوة 1:</strong> حساب R</div>
+      <div class="solution-step">R = D / log₂(V) = 9600 / log₂(16) = 9600 / 4 = <span class="highlight">2400 bauds</span></div>
+      <div class="solution-step">🔹 <strong>الخطوة 2:</strong> R_max = 2 × F_max → F_min = R / 2</div>
+      <div class="solution-step">F_min = R / 2 = 2400 / 2</div>
+      <div class="solution-step result">→ F_min = 1200 Hz</div>
+      <div class="solution-step comment">// الحد الأدنى من البنده passante هو 1200 Hz</div>
+    </div>
+  </div>
+
+  <!-- Ex4 -->
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">04</div>
+      <div>
+        <div class="ex-question">
+          <strong>السؤال:</strong> احسب الدبيت الأقصى لزوج ملتوي Cat5 (بنده passante = 100 MHz)، إذا كانت قدرة الإشارة تساوي 100 ضعف قدرة الضوضاء.
+        </div>
+      </div>
+    </div>
+    <button class="solution-toggle" onclick="toggleSolution('s4')">▶ عرض الحل</button>
+    <div id="s4" class="solution">
+      <div class="solution-step">📐 <strong>المعطيات:</strong> F = 100 MHz = 10⁸ Hz، S/N = 100</div>
+      <div class="solution-step">📐 <strong>القانون:</strong> <span class="formula">C = F × log₂(1 + S/N)</span> — Shannon</div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">C = 10⁸ × log₂(1 + 100)</div>
+      <div class="solution-step">C = 10⁸ × log₂(101)</div>
+      <div class="solution-step">C = 10⁸ × (log₁₀(101) / log₁₀(2))</div>
+      <div class="solution-step">C = 10⁸ × (2.0043 / 0.30103)</div>
+      <div class="solution-step">C = 10⁸ × <span class="highlight">6.658</span></div>
+      <div class="solution-step result">→ C ≈ 665.8 Mbit/s</div>
+    </div>
+  </div>
+
+  <!-- Ex5 -->
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">05</div>
+      <div>
+        <div class="ex-question">
+          <strong>السؤال:</strong> ما هو الدبيت الأقصى في قناة بعرض 3 kHz ونسبة إشارة/ضوضاء = 20 dB؟
+        </div>
+      </div>
+    </div>
+    <button class="solution-toggle" onclick="toggleSolution('s5')">▶ عرض الحل</button>
+    <div id="s5" class="solution">
+      <div class="solution-step">📐 <strong>تحويل dB أولاً:</strong></div>
+      <div class="solution-step">S/N = 10^(20/10) = 10^2 = <span class="highlight">100</span></div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">C = F × log₂(1 + S/N)</div>
+      <div class="solution-step">C = 3000 × log₂(1 + 100) = 3000 × log₂(101)</div>
+      <div class="solution-step">C = 3000 × <span class="highlight">6.658</span></div>
+      <div class="solution-step result">→ C ≈ 19 974 bit/s ≈ 20 kbit/s</div>
+      <div class="solution-step comment">// ⚠️ انتبه: دائماً حوّل dB إلى نسبة قبل Shannon!</div>
+    </div>
+  </div>
+
+  <!-- Ex6 -->
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">06</div>
+      <div>
+        <div class="ex-question">
+          <strong>السؤال:</strong> ألياف بصرية: D = 155 Mb/s، L = 3000 km، V = 2×10⁸ m/s. كم من الوقت لتلقي نهاية حزمة 512 octet؟ ثم قارن مع زوج ملتوي D = 2 Mb/s.
+        </div>
+      </div>
+    </div>
+    <button class="solution-toggle" onclick="toggleSolution('s6')">▶ عرض الحل</button>
+    <div id="s6" class="solution">
+      <div class="solution-step">📐 <strong>الألياف البصرية:</strong></div>
+      <div class="solution-step">T_emission = (512 × 8) / (155 × 10⁶) = 4096 / 155×10⁶</div>
+      <div class="solution-step result">T_em = 2.643 × 10⁻⁵ s = <span class="highlight">26.43 μs</span></div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">T_propagation = 3000×10³ / (2×10⁸) = 3×10⁶ / 2×10⁸</div>
+      <div class="solution-step result">T_prop = 0.015 s = <span class="highlight">15 ms</span></div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step result">T_total = 15 ms + 26.43 μs ≈ <span class="highlight">15.026 ms</span></div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">📐 <strong>الزوج الملتوي (D = 2 Mb/s):</strong></div>
+      <div class="solution-step">T_emission = 4096 / (2×10⁶) = <span class="highlight">2.048 ms</span></div>
+      <div class="solution-step">T_propagation = 15 ms (نفس المسافة)</div>
+      <div class="solution-step result">T_total = 15 ms + 2.048 ms = <span class="highlight">17.048 ms</span></div>
+      <div class="solution-step comment">// الفرق صغير لأن زمن الانتشار يهيمن (المسافة كبيرة)</div>
+    </div>
+  </div>
+
+  <!-- Ex7 -->
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">07</div>
+      <div>
+        <div class="ex-question">
+          <strong>السؤال:</strong> شبكة حلقية: 10 محطات، V_prop = 200 m/μs، الإطار = 256 bit.<br>
+          <strong>a)</strong> L=10km, D=5Mbit/s &nbsp; <strong>b)</strong> L=1km, D=500Mbit/s &nbsp; <strong>c)</strong> مقارنة المردود
+        </div>
+      </div>
+    </div>
+    <button class="solution-toggle" onclick="toggleSolution('s7')">▶ عرض الحل</button>
+    <div id="s7" class="solution">
+      <div class="solution-step">📐 <strong>المعطيات المشتركة:</strong></div>
+      <div class="solution-step">T_trame = 256 / D</div>
+      <div class="solution-step">T_prop_anneau = L / V_prop = L / (200×10³ m/s)</div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">🔹 <strong>a) L=10km, D=5Mbit/s</strong></div>
+      <div class="solution-step">T_bit = 1/(5×10⁶) = <span class="highlight">0.2 μs</span></div>
+      <div class="solution-step">T_prop = 10000 / (200×10⁶) = <span class="highlight">50 μs</span></div>
+      <div class="solution-step">Bits_prop = 50μs × 5Mbit/s = <span class="highlight">250 bits</span> en propagation</div>
+      <div class="solution-step">T_trame = 256/(5×10⁶) = 51.2 μs</div>
+      <div class="solution-step result">T_total_AR = T_trame + 2×T_prop = 51.2 + 100 = 151.2 μs</div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">🔹 <strong>b) L=1km, D=500Mbit/s</strong></div>
+      <div class="solution-step">T_bit = 1/(500×10⁶) = <span class="highlight">2 ns</span></div>
+      <div class="solution-step">T_prop = 1000 / (200×10⁶) = <span class="highlight">5 μs</span></div>
+      <div class="solution-step">Bits_prop = 5μs × 500Mbit/s = <span class="highlight">2500 bits</span> en propagation</div>
+      <div class="solution-step">T_trame = 256/(500×10⁶) = 0.512 μs</div>
+      <div class="solution-step result">T_total_AR = 0.512 + 10 = 10.512 μs</div>
+      <div class="solution-step">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div class="solution-step">🔹 <strong>c) المقارنة والمردود</strong></div>
+      <div class="solution-step">η_a = T_trame / T_total = 51.2 / 151.2 = <span class="result">33.9%</span></div>
+      <div class="solution-step">η_b = T_trame / T_total = 0.512 / 10.512 = <span class="result">4.87%</span></div>
+      <div class="solution-step comment">// الحلقة b أسرع لكن مردودها أقل بكثير!</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TAB: CODING ===== -->
+<div id="coding" class="tab-content">
+  <div class="section-header">
+    <div class="section-icon purple">⚡</div>
+    <div class="section-title">
+      <h2>أنواع الترميز والتشفير</h2>
+      <p>Codages numériques · Digital Encoding Methods</p>
+    </div>
+  </div>
+
+  <div class="coding-grid">
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BASEBAND · UNIPOLAR</div>
+        <h3>الترميز الأحادي القطب
+          <span class="sub">Codage Unipolaire · Unipolar Encoding</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">مستوى جهد موجب V (الجهد العالي)</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">مستوى جهد صفر (0V)</span>
+        </div>
+        <div class="highlight-box" style="margin-top:12px">
+          <strong>مثال: 0110010</strong><br>
+          0=0V, 1=V, 1=V, 0=0V, 0=0V, 1=V, 0=0V
+        </div>
+      </div>
+    </div>
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BASEBAND · NRZ</div>
+        <h3>الترميز NRZ
+          <span class="sub">Non Return to Zero</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">جهد موجب +V طوال مدة البت</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">جهد سالب -V طوال مدة البت</span>
+        </div>
+        <div class="note">لا يوجد عودة إلى الصفر — لكن صعب مزامنة</div>
+      </div>
+    </div>
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BASEBAND · NRZI</div>
+        <h3>الترميز NRZI
+          <span class="sub">Non Return to Zero Inverted</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">تحويل (transition) عند بداية البت — يعكس ما كان قبله</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">بقاء على نفس مستوى الجهد — يعامل كما كان قبله</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BASEBAND · MANCHESTER</div>
+        <h3>ترميز مانشستر
+          <span class="sub">Codage Manchester</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">من +V إلى -V في منتصف البت (هبوط)</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">من -V إلى +V في منتصف البت (صعود)</span>
+        </div>
+        <div class="note">✅ ميزة: المزامنة مضمونة — دائماً تغيير في المنتصف</div>
+      </div>
+    </div>
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BASEBAND · MANCHESTER DIFF</div>
+        <h3>مانشستر التفاضلي
+          <span class="sub">Manchester Différentiel</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">يعكس عند بداية البت ما كان قبله، مع transition في المنتصف</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">يبقى كما كان في البداية، مع transition في المنتصف</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BASEBAND · MILLER</div>
+        <h3>ترميز ميلر
+          <span class="sub">Codage Miller / Modified FM</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">تحويل في منتصف البت (مثل Manchester)</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">إذا تبعه 0 آخر: تحويل في نهاية البت. وإلا: لا تحويل</span>
+        </div>
+        <div class="note">نهاية الـ 1 = بداية الـ 1 التالي</div>
+      </div>
+    </div>
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BROADBAND · MODULATION</div>
+        <h3>التعديل الترددي — FM
+          <span class="sub">Modulation de Fréquence / FSK</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">تردد عالٍ (fréquence haute)</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">تردد منخفض (fréquence basse)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BROADBAND · MODULATION</div>
+        <h3>التعديل الطوري — PM
+          <span class="sub">Modulation de Phase / PSK</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">من الفوق للتحت (inversion de phase)</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">من التحت للفوق</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="coding-card">
+      <div class="coding-card-header">
+        <div class="coding-type">BROADBAND · MODULATION</div>
+        <h3>التعديل السعي — AM
+          <span class="sub">Modulation d'Amplitude / ASK</span>
+        </h3>
+      </div>
+      <div class="coding-body">
+        <div class="coding-rule">
+          <span class="rule-bit one">1</span>
+          <span class="rule-desc">سعة عالية (amplitude haute)</span>
+        </div>
+        <div class="coding-rule">
+          <span class="rule-bit zero">0</span>
+          <span class="rule-desc">سعة صفر أو منخفضة جداً</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== TAB: IP ===== -->
+<div id="ip" class="tab-content">
+  <div class="section-header">
+    <div class="section-icon blue">🔌</div>
+    <div class="section-title">
+      <h2>عناوين IP والشبكات الفرعية</h2>
+      <p>Adresses IP & Sous-réseaux · IP Addressing & Subnetting</p>
+    </div>
+  </div>
+
+  <!-- IP Classes Table -->
+  <div class="full-card">
+    <h3>📋 جدول فئات عناوين IP</h3>
+    <table class="ip-table">
+      <tr>
+        <th>الفئة</th>
+        <th>مدى العناوين</th>
+        <th>المسك الافتراضي</th>
+        <th>بتات الشبكة</th>
+        <th>بتات الجهاز</th>
+        <th>عدد الشبكات</th>
+        <th>عدد الأجهزة</th>
+      </tr>
+      <tr>
+        <td><span class="class-badge class-a">A</span></td>
+        <td>0.0.0.1 → 126.255.255.254</td>
+        <td>255.0.0.0</td>
+        <td>8 bits</td>
+        <td>24 bits</td>
+        <td>126</td>
+        <td>16,777,214</td>
+      </tr>
+      <tr>
+        <td><span class="class-badge class-b">B</span></td>
+        <td>128.0.0.1 → 191.255.255.254</td>
+        <td>255.255.0.0</td>
+        <td>16 bits</td>
+        <td>16 bits</td>
+        <td>16,382</td>
+        <td>65,534</td>
+      </tr>
+      <tr>
+        <td><span class="class-badge class-c">C</span></td>
+        <td>192.0.0.1 → 223.255.255.254</td>
+        <td>255.255.255.0</td>
+        <td>24 bits</td>
+        <td>8 bits</td>
+        <td>2,097,150</td>
+        <td>254</td>
+      </tr>
+      <tr>
+        <td><span class="class-badge class-d">D</span></td>
+        <td>224.0.0.0 → 239.255.255.255</td>
+        <td>—</td>
+        <td colspan="4">Multicast — لا يستعمل للأجهزة العادية</td>
+      </tr>
+      <tr>
+        <td><span class="class-badge class-e">E</span></td>
+        <td>240.0.0.0 → 247.255.255.255</td>
+        <td>—</td>
+        <td colspan="4">Reserved — محجوز للبحث</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Subnetting Method -->
+  <div class="full-card">
+    <h3>🔢 طريقة حساب Sous-réseaux — خطوة بخطوة</h3>
+    <div class="formula-guide">
+      <div class="guide-title">SUBNETTING METHOD</div>
+      <table class="guide-table">
+        <tr><th>#</th><th>الخطوة</th><th>المعادلة</th></tr>
+        <tr>
+          <td>1</td>
+          <td>تحديد فئة IP وعدد الشبكات المطلوبة</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>حساب عدد بتات الشبكة الفرعية اللازمة</td>
+          <td>2^n ≥ عدد الشبكات → أصغر n</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>حساب مسك الشبكة الفرعية</td>
+          <td>n بتات "1" مضافة لآخر octet</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>حساب عدد الأجهزة لكل شبكة</td>
+          <td>2^(8-n) - 2 (عنوان الشبكة + Broadcast)</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>حساب معرّفات الشبكات الفرعية</td>
+          <td>الشبكة الأولى + 2^(8-n) × i</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <strong>مثال من الملخص:</strong> IP = 192.168.69.0، 5 شبكات فرعية<br><br>
+      1. الفئة C → المسك الافتراضي: 255.255.255.0<br>
+      2. n بحيث 2^n ≥ 5 → n=3 (2³=8≥5)<br>
+      3. المسك الفرعي: 255.255.255.<span style="color:var(--accent3)">11100000</span> = <strong>255.255.255.224</strong><br>
+      4. عدد الأجهزة: 2^5 - 2 = <strong>30 جهاز</strong> لكل شبكة<br>
+      5. الشبكات: .0, .32, .64, .96, .128, ...
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="formula-title">الشبكات الفرعية الناتجة</div>
+      <table class="ip-table">
+        <tr><th>#</th><th>معرّف الشبكة</th><th>أول جهاز</th><th>آخر جهاز</th><th>Broadcast</th></tr>
+        <tr><td>SR1</td><td>192.168.69.0</td><td>192.168.69.1</td><td>192.168.69.30</td><td>192.168.69.31</td></tr>
+        <tr><td>SR2</td><td>192.168.69.32</td><td>192.168.69.33</td><td>192.168.69.62</td><td>192.168.69.63</td></tr>
+        <tr><td>SR3</td><td>192.168.69.64</td><td>192.168.69.65</td><td>192.168.69.94</td><td>192.168.69.95</td></tr>
+        <tr><td>SR4</td><td>192.168.69.96</td><td>192.168.69.97</td><td>192.168.69.126</td><td>192.168.69.127</td></tr>
+        <tr><td>SR5</td><td>192.168.69.128</td><td>192.168.69.129</td><td>192.168.69.158</td><td>192.168.69.159</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB: ERRORS ===== -->
+<div id="errors" class="tab-content">
+  <div class="section-header">
+    <div class="section-icon red">🛡️</div>
+    <div class="section-title">
+      <h2>كشف وتصحيح الأخطاء</h2>
+      <p>Détection et Correction d'Erreurs · Error Detection & Correction</p>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- VRC/Parité -->
+    <div class="card">
+      <div class="card-num">VRC / PARITÉ</div>
+      <h3>
+        بت التحقق (المساواة)
+        <span class="fr">VRC — Contrôle de Parité Vertical</span>
+        <span class="en">Vertical Redundancy Check</span>
+      </h3>
+      <p>يُضاف bit واحد لكل كلمة بحيث يكون مجموع الـ 1 في الكلمة زوجياً (parité paire) أو فردياً (parité impaire).</p>
+      <div class="formulas">
+        <div class="formula-title">RULES</div>
+        <div class="formula"><span class="label">Paire:</span><span class="eq">nb de 1 → pair → bit = 0</span></div>
+        <div class="formula"><span class="label">Paire:</span><span class="eq">nb de 1 → impair → bit = 1</span></div>
+        <div class="formula"><span class="label">Impaire:</span><span class="eq">inverse de paire</span></div>
+      </div>
+      <div class="highlight-box">
+        مثال "I" ASCII = 1001001 (3 بتات 1 → فردي)<br>
+        VRC pair → أضف <strong>1</strong> → 1001001<strong>1</strong><br>
+        VRC impair → أضف <strong>0</strong> → 1001001<strong>0</strong>
+      </div>
+    </div>
+
+    <!-- LRC -->
+    <div class="card">
+      <div class="card-num">LRC / PARITÉ HORIZONTALE</div>
+      <h3>
+        تحقق خطي طولي
+        <span class="fr">LRC — Longitudinal Redundancy Check</span>
+        <span class="en">Horizontal Parity</span>
+      </h3>
+      <p>يُحسب بit التحقق لكل عمود (موضع bit) عبر جميع الكلمات. يُضاف كسطر إضافي في النهاية.</p>
+      <div class="highlight-box">
+        للكشف عن الأخطاء المنفردة والمتعددة في نفس العمود.<br>
+        يستعمل مع VRC للحصول على حماية أفضل.
+      </div>
+    </div>
+
+    <!-- CRC -->
+    <div class="card">
+      <div class="card-num">CRC / POLYNOMIAL</div>
+      <h3>
+        التحقق الدوري بالكثيرة الحدود
+        <span class="fr">CRC — Cyclic Redundancy Check</span>
+        <span class="en">CRC Polynomial Code</span>
+      </h3>
+      <p>يُعدّ الأقوى للكشف عن الأخطاء. يقوم على قسمة رسالة M(x) على كثيرة حدود G(x) واستعمال الباقي R(x) كـ checksum.</p>
+      <div class="formulas">
+        <div class="formula-title">STEPS</div>
+        <div class="formula"><span class="label">1. M(x).x^n</span><span class="eq">أضف n صفر لـ M (n = درجة G)</span></div>
+        <div class="formula"><span class="label">2. قسّم</span><span class="eq">M(x).x^n ÷ G(x)</span></div>
+        <div class="formula"><span class="label">3. R(x)</span><span class="eq">الباقي → هو الـ CRC</span></div>
+        <div class="formula"><span class="label">4. T(x)</span><span class="eq">M(x).x^n - R(x) = الرسالة النهائية</span></div>
+      </div>
+      <div class="note">⚠️ في الحساب الثنائي: XOR بدل الطرح!</div>
+    </div>
+
+    <!-- Hamming -->
+    <div class="card">
+      <div class="card-num">HAMMING CODE</div>
+      <h3>
+        رمز هامينغ — تصحيح الأخطاء
+        <span class="fr">Code de Hamming</span>
+        <span class="en">Hamming Error-Correcting Code</span>
+      </h3>
+      <p>رمز يكشف <strong>ويُصحّح</strong> خطأ بت واحد. يضيف بتات تحقق P في مواضع قوى 2.</p>
+      <div class="formulas">
+        <div class="formula-title">PARITY BIT POSITIONS</div>
+        <div class="formula"><span class="label">P₁ (pos 1):</span><span class="eq">يغطي: 1,3,5,7,9,11...</span></div>
+        <div class="formula"><span class="label">P₂ (pos 2):</span><span class="eq">يغطي: 2,3,6,7,10,11...</span></div>
+        <div class="formula"><span class="label">P₄ (pos 4):</span><span class="eq">يغطي: 4,5,6,7,12,13,14...</span></div>
+        <div class="formula"><span class="label">P₈ (pos 8):</span><span class="eq">يغطي: 8-15, 24-31...</span></div>
+      </div>
+      <div class="note">القاعدة: Pₖ يغطي k موضع، يتخطى k، يغطي k، إلخ</div>
+      <div class="highlight-box">
+        عدد بتات البيانات m → عدد بتات التحقق r بحيث: <strong>2^r ≥ m + r + 1</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CRC Example -->
+  <div class="full-card">
+    <h3>📖 مثال CRC من الملخص</h3>
+    <div class="formula-guide">
+      <div class="guide-title">مثال: الرسالة = 1011011 ، G(x) = x⁴+x+1 = 10011</div>
+    </div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
+      <div>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px">الخطوات:</p>
+        <div class="solution-step">M(x) = 1011011</div>
+        <div class="solution-step">n = 4 (درجة G) → أضف 4 أصفار</div>
+        <div class="solution-step">M(x).x⁴ = <span class="highlight">10110110000</span></div>
+        <div class="solution-step">القسمة: 10110110000 ÷ 10011</div>
+        <div class="solution-step">الباقي R(x) = <span class="highlight">1100</span></div>
+        <div class="solution-step result">T(x) = 1011011<strong>1100</strong></div>
+      </div>
+      <div>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px">ملاحظات:</p>
+        <div class="note">في XOR: 1⊕1=0, 0⊕0=0, 1⊕0=1</div>
+        <div class="note">G(x) يجب أن يبدأ وينتهي بـ 1</div>
+        <div class="note">درجة الباقي يجب أن تكون أقل من درجة G(x)</div>
+        <div class="highlight-box">في الاستقبال: T(x) ÷ G(x) → إذا الباقي = 0 ✅ لا خطأ</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- END MAIN -->
+
+<!-- FOOTER -->
+<footer>
+  <span style="color:var(--accent)">NET</span><span style="color:var(--text-muted)">WIKI</span> · 
+  شبكات الحاسوب · Réseaux Informatiques · Computer Networks · 
+  <span style="color:var(--accent4)">Université d'El Oued — 2ème Année Licence Informatique</span>
+</footer>
+
+</div><!-- END CONTAINER -->
+
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ===== SOLUTION TOGGLE =====
+function toggleSolution(id) {
+  const el = document.getElementById(id);
+  const btn = el.previousElementSibling;
+  if (el.classList.contains('open')) {
+    el.classList.remove('open');
+    btn.textContent = '▶ عرض الحل';
+  } else {
+    el.classList.add('open');
+    btn.textContent = '▼ إخفاء الحل';
+  }
+}
+
+// ===== CALCULATOR 1: R & D =====
+function calc1() {
+  const R = parseFloat(document.getElementById('c1_R').value);
+  const D = parseFloat(document.getElementById('c1_D').value);
+  const V = parseFloat(document.getElementById('c1_V').value);
+  const F = parseFloat(document.getElementById('c1_F').value);
+  
+  let html = '';
+  const log2V = V ? Math.log2(V) : null;
+  
+  if (D && V && !R) {
+    const r = D / log2V;
+    html += row('R = D / log₂(V)', `${D} / ${log2V} = <strong>${r.toFixed(2)} bauds</strong>`);
+  }
+  if (R && V && !D) {
+    const d = R * log2V;
+    html += row('D = R × log₂(V)', `${R} × ${log2V} = <strong>${d.toFixed(2)} bit/s</strong>`);
+  }
+  if (F) {
+    const rmax = 2 * F;
+    html += row('R_max = 2 × F', `2 × ${F} = <strong>${rmax} bauds</strong>`);
+    if (V) {
+      const dmax = 2 * F * log2V;
+      html += row('D_max = 2F × log₂(V) [Nyquist]', `<strong>${fmt(dmax)} bit/s</strong>`);
+    }
+  }
+  if (R && V && D) {
+    const check = R * log2V;
+    html += row('تحقق: D = R × log₂(V)', `${R} × ${log2V} = ${check.toFixed(2)} bit/s ${Math.abs(check-D)<1?'✅':'❌'}`);
+  }
+  
+  if (!html) { html = '<div class="result-row"><span class="result-label">❌ أدخل معطيات كافية</span></div>'; }
+  showResult('c1_result', html);
+}
+
+// ===== CALCULATOR 2: Nyquist/Shannon =====
+function convertdB() {
+  const dB = parseFloat(document.getElementById('c2_SNdB').value);
+  if (!isNaN(dB)) {
+    document.getElementById('c2_SN').value = Math.pow(10, dB/10).toFixed(4);
+  }
+}
+
+function calc2() {
+  const F = parseFloat(document.getElementById('c2_F').value);
+  const V = parseFloat(document.getElementById('c2_V').value);
+  const SN = parseFloat(document.getElementById('c2_SN').value);
+  const dB = parseFloat(document.getElementById('c2_SNdB').value);
+  
+  let html = '';
+  
+  if (F && V) {
+    const dmax = 2 * F * Math.log2(V);
+    html += row('Nyquist: D_max = 2F×log₂(V)', `2 × ${fmt(F)} × ${Math.log2(V).toFixed(2)} = <strong>${fmt(dmax)} bit/s</strong>`);
+  }
+  if (F && SN) {
+    const c = F * Math.log2(1 + SN);
+    if (!isNaN(dB)) {
+      html += row('Conversion dB → ratio', `10^(${dB}/10) = <strong>${SN.toFixed(4)}</strong>`);
+    }
+    html += row('Shannon: C = F×log₂(1+S/N)', `${fmt(F)} × log₂(${(1+SN).toFixed(2)}) = ${fmt(F)} × ${Math.log2(1+SN).toFixed(4)} = <strong>${fmt(c)} bit/s</strong>`);
+  }
+  
+  if (!html) { html = '<div class="result-row"><span class="result-label">❌ أدخل F وإما V أو S/N</span></div>'; }
+  showResult('c2_result', html);
+}
+
+// ===== CALCULATOR 3: Propagation =====
+function calc3() {
+  const size = parseFloat(document.getElementById('c3_size').value);
+  const D = parseFloat(document.getElementById('c3_D').value);
+  const L = parseFloat(document.getElementById('c3_L').value);
+  const V = parseFloat(document.getElementById('c3_V').value);
+  
+  let html = '';
+  
+  if (size && D) {
+    const bits = size * 8;
+    const Tem = bits / D;
+    html += row('Bits = octets × 8', `${size} × 8 = <strong>${bits} bits</strong>`);
+    html += row('T_émission = bits / D', `${bits} / ${fmt(D)} = <strong>${sciNotation(Tem)} s = ${(Tem*1000).toFixed(4)} ms</strong>`);
+  }
+  if (L && V) {
+    const Tprop = L / V;
+    html += row('T_propagation = L / V_prop', `${fmt(L)} / ${fmt(V)} = <strong>${sciNotation(Tprop)} s = ${(Tprop*1000).toFixed(4)} ms</strong>`);
+    
+    if (size && D) {
+      const Tem = (size * 8) / D;
+      const Ttotal = Tem + Tprop;
+      html += row('T_total = T_em + T_prop', `<strong>${sciNotation(Ttotal)} s = ${(Ttotal*1000).toFixed(4)} ms</strong>`);
+    }
+  }
+  
+  if (!html) { html = '<div class="result-row"><span class="result-label">❌ أدخل المعطيات</span></div>'; }
+  showResult('c3_result', html);
+}
+
+// ===== CALCULATOR 4: Subnet =====
+function calc4() {
+  const ipStr = document.getElementById('c4_ip').value.trim();
+  const n = parseInt(document.getElementById('c4_subnets').value);
+  
+  if (!ipStr || !n) { showResult('c4_result', '<div class="result-row"><span class="result-label">❌ أدخل IP وعدد الشبكات</span></div>'); return; }
+  
+  const parts = ipStr.split('.').map(Number);
+  if (parts.length !== 4) { showResult('c4_result', '<div class="result-row"><span class="result-label">❌ IP غير صحيح</span></div>'); return; }
+  
+  // Determine class
+  let cls, defMask, netBits;
+  if (parts[0] < 128) { cls='A'; defMask='255.0.0.0'; netBits=8; }
+  else if (parts[0] < 192) { cls='B'; defMask='255.255.0.0'; netBits=16; }
+  else if (parts[0] < 224) { cls='C'; defMask='255.255.255.0'; netBits=24; }
+  else { showResult('c4_result', '<div class="result-row"><span class="result-label">❌ فئة D أو E لا تدعم subnetting</span></div>'); return; }
+  
+  // Bits needed
+  let subBits = 0;
+  while (Math.pow(2, subBits) < n) subBits++;
+  
+  const hostBits = (32 - netBits) - subBits;
+  if (hostBits < 2) { showResult('c4_result', '<div class="result-row"><span class="result-label">❌ عدد الشبكات كبير جداً</span></div>'); return; }
+  
+  const hostsPerSubnet = Math.pow(2, hostBits) - 2;
+  const step = Math.pow(2, hostBits);
+  
+  // Build mask
+  const totalOnes = netBits + subBits;
+  let maskBin = '1'.repeat(totalOnes) + '0'.repeat(32 - totalOnes);
+  const maskParts = [0,8,16,24].map(i => parseInt(maskBin.slice(i,i+8),2));
+  const mask = maskParts.join('.');
+  
+  let html = '';
+  html += row('الفئة / Classe', `<strong>${cls}</strong> — المسك الافتراضي: ${defMask}`);
+  html += row('بتات الشبكة الفرعية n', `2^${subBits} = ${Math.pow(2,subBits)} ≥ ${n} شبكة`);
+  html += row('مسك الشبكة الفرعية', `<strong>${mask}</strong>`);
+  html += row('أجهزة لكل شبكة', `2^${hostBits} - 2 = <strong>${hostsPerSubnet}</strong>`);
+  html += row('الخطوة (step)', `<strong>${step}</strong>`);
+  html += '<div style="margin-top:12px; font-family:monospace; font-size:12px; color:var(--text-muted)">الشبكات الفرعية الأولى:</div>';
+  
+  const base = [...parts];
+  const octIdx = Math.floor((netBits) / 8);
+  for (let i = 0; i < Math.min(n, 6); i++) {
+    const subAddr = [...base];
+    subAddr[octIdx] = parts[octIdx] + i * step;
+    const first = [...subAddr]; first[3] += 1;
+    const broad = [...subAddr]; broad[3] += step - 1;
+    html += row(`SR${i+1}`, `<span style="color:var(--accent3)">${subAddr.join('.')}</span> → ${subAddr.slice(0,-1).join('.')}.${ subAddr[3]+1} ~ ${subAddr.slice(0,-1).join('.')}.${subAddr[3]+step-2}`);
+  }
+  
+  showResult('c4_result', html);
+}
+
+// ===== HELPERS =====
+function row(label, value) {
+  return `<div class="result-row"><span class="result-label">${label}</span><span class="result-value">${value}</span></div>`;
+}
+
+function showResult(id, html) {
+  const el = document.getElementById(id);
+  el.innerHTML = html;
+  el.classList.add('visible');
+}
+
+function fmt(n) {
+  if (n >= 1e9) return (n/1e9).toFixed(3) + ' G';
+  if (n >= 1e6) return (n/1e6).toFixed(3) + ' M';
+  if (n >= 1e3) return (n/1e3).toFixed(3) + ' k';
+  return n.toFixed(4);
+}
+
+function sciNotation(n) {
+  if (n === 0) return '0';
+  const exp = Math.floor(Math.log10(Math.abs(n)));
+  const coef = (n / Math.pow(10, exp)).toFixed(3);
+  return `${coef} × 10^${exp}`;
+}
+</script>
+
+</body>
+</html>
